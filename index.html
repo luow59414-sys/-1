@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>2026 精神状态大普查</title>
+<title>闪送内部绝密档案</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -143,18 +143,18 @@
   <div class="cover-deco"></div>
   <div class="cover-deco2"></div>
   <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%">
-    <div class="cover-tag">2026 精神状态大普查</div>
-    <div class="cover-title">测测你的<br><span>「抽象人格」</span>标签</div>
+    <div class="cover-tag">闪送内部绝密档案</div>
+    <div class="cover-title">闪送酒量<br><span>「大普查」</span></div>
     <div class="cover-sub">
-      5 道灵魂拷问 · 3 分钟 · AI 深度解析<br>
-      测准率 <strong style="color:var(--blush)">99%</strong>（概不负责）
+      6 道灵魂拷问 · 刘虹辰 VS 王修成 · AI 深度裁判<br>
+      结果准确率 <strong style="color:var(--blush)">99%</strong>（刘虹辰本人认证）
     </div>
     <div class="cover-count">
       <div class="dot"></div>
-      <div class="count-text">已有 <strong>12,508</strong> 人参与测评</div>
+      <div class="count-text">已有 <strong>3 人</strong>参与（全是闪送员工）</div>
     </div>
-    <button class="btn-main" id="start-btn">🔮 开启灵魂拷问</button>
-    <div class="cover-note">测评结果仅供娱乐 · 请理性看待你的抽象程度</div>
+    <button class="btn-main" id="start-btn">🍻 开始鉴定酒量</button>
+    <div class="cover-note">测评结果仅供内部娱乐 · 王修成看到请淡定</div>
   </div>
 </div>
 
@@ -162,7 +162,7 @@
 <div class="screen hidden" id="quiz">
   <div class="progress-bar">
     <div class="progress-meta">
-      <div class="prog-label">灵魂拷问进度</div>
+      <div class="prog-label">酒量鉴定进度</div>
       <div class="prog-num" id="prog-num">1 / 5</div>
     </div>
     <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:20%"></div></div>
@@ -177,8 +177,8 @@
 <!-- LOADING SCREEN -->
 <div class="screen hidden" id="loading">
   <span class="loading-emoji">🧠</span>
-  <div class="loading-title">AI 正在根据你的<br>神经突触分布生成报告...</div>
-  <div class="loading-sub">正在分析：抽象指数 · 精神浓度 · 摆烂半径</div>
+  <div class="loading-title">AI 正在根据你的<br>酒精耐受基因链生成报告...</div>
+  <div class="loading-sub">正在分析：酒量指数 · 清醒浓度 · 装醉半径</div>
   <div class="load-pct" id="load-pct">0%</div>
   <div class="load-track"><div class="load-fill" id="load-fill"></div></div>
   <div class="load-tip" id="load-tip">解码行为模式中...</div>
@@ -187,7 +187,7 @@
 <!-- RESULT SCREEN -->
 <div class="screen hidden" id="result">
   <div class="result-hero">
-    <div class="result-badge">你的人格标签</div>
+    <div class="result-badge">你的酒量立场</div>
     <div class="result-label" id="res-label">—</div>
     <div class="result-keywords" id="res-keywords"></div>
     <div class="result-score" id="res-score"></div>
@@ -208,9 +208,9 @@
   </div>
   <div class="save-hint">
     <strong>📸 长按保存结果图</strong>
-    截图分享给朋友，看看 ta 的抽象程度
+    截图发给刘虹辰，让他亲自点评
   </div>
-  <button class="btn-retry" id="retry-btn">↩ 再测一次</button>
+  <button class="btn-retry" id="retry-btn">↩ 再测一次（答案不会变的）</button>
 </div>
 
 </div>
@@ -219,102 +219,102 @@
 const QUIZ = [
   {
     id: 1,
-    q: "周一早上闹钟响了 5 次你都没起，此时你脑子里在想？",
+    q: "刘虹辰和王修成相约团建，刘虹辰开局就干了一瓶白酒，王修成此刻的表情是？",
     options: [
-      { text: "大不了辞职，明天就去流浪", score: 3 },
-      { text: "再躺 1 分钟，就 1 分钟", score: 2 },
-      { text: "计算迟到扣多少钱，并精准起床", score: 1 }
+      { text: "淡定点烟：小意思，我热身都没开始", score: 1 },
+      { text: "微微颤抖，悄悄把自己的杯子换成了雪碧", score: 2 },
+      { text: "当场站起来鼓掌：大哥我认输，您是神", score: 3 }
     ]
   },
   {
     id: 2,
-    q: "闪送传说：刘虹辰 VS 王修成，谁的酒量更猛？",
+    q: "据闪送内部传说，刘虹辰喝酒的状态是？",
     options: [
-      { text: "刘虹辰，三斤白酒面不改色，王修成见了直接认输", score: 3 },
-      { text: "刘虹辰略胜一筹，王修成喝到第二瓶就开始认干哥", score: 2 },
-      { text: "王修成，毕竟岁月是把杀猪刀，刘虹辰还嫩了点", score: 1 }
+      { text: "越喝越清醒，喝完还能反手解决三个客诉", score: 3 },
+      { text: "喝完一瓶开始讲人生哲学，两瓶之后开始背公司价值观", score: 2 },
+      { text: "适可而止，喝完准时回家，是个有原则的人", score: 1 }
     ]
   },
   {
     id: 3,
-    q: "老板在群里发了一个红包，但没人说话，你会？",
+    q: "王修成挑战刘虹辰喝酒，结果王修成先倒了。第二天他在工作群发消息说：",
     options: [
-      { text: "火速领完并发送【谢谢老板】", score: 1 },
-      { text: "观察 5 分钟，看别人领不领", score: 2 },
-      { text: "领完装死，绝不回复", score: 3 }
+      { text: "昨晚身体不适，今日正常上班，感谢关心", score: 1 },
+      { text: "不发消息，默默上线，假装什么都没发生", score: 2 },
+      { text: "主动发：刘哥酒量确实可以，改天再战，我要练三个月", score: 3 }
     ]
   },
   {
     id: 4,
-    q: "深夜突然想吃宵夜，但又怕胖，此时你的心态是？",
+    q: "刘虹辰喝了 2 斤白酒之后，被问到公司 Q3 OKR，他会？",
     options: [
-      { text: "算了，不吃会心情不好，心情不好会老得快", score: 3 },
-      { text: "看 10 个吃播视频，假装自己吃过了", score: 2 },
-      { text: "喝一杯白开水，暗示自己饱了", score: 1 }
+      { text: "背得一字不差，还顺便提了三条优化建议", score: 3 },
+      { text: "大概说了个方向，细节有点模糊但总体正确", score: 2 },
+      { text: "笑而不语，用眼神告诉你：这不重要", score: 1 }
     ]
   },
   {
     id: 5,
-    q: "遇到很久没见的熟人迎面走来，你第一反应？",
+    q: "如果给刘虹辰的酒量颁发一个奖项，应该叫？",
     options: [
-      { text: "火速低头玩手机，祈祷对方看不见我", score: 3 },
-      { text: "大脑空白，僵硬地微笑点头", score: 2 },
-      { text: "热情打招呼：好久不见！改天约饭！", score: 1 }
+      { text: "闪送战略级核心资产·不可替代酒神奖", score: 3 },
+      { text: "闪送年度最佳团建氛围组·MVP", score: 2 },
+      { text: "闪送健康饮酒形象大使·模范奖", score: 1 }
     ]
   },
   {
     id: 6,
-    q: "如果你的生活被拍成电影，片名大概会叫？",
+    q: "王修成私下评价刘虹辰酒量时，最可能说的一句话是？",
     options: [
-      { text: "《绝不服输的打工人》", score: 1 },
-      { text: "《互联网废料回收站》", score: 2 },
-      { text: "《一个人的静音模式》", score: 3 }
+      { text: "他不是人，他是一个会走路的蒸馏器", score: 3 },
+      { text: "确实比我强一点，但也就一点点", score: 2 },
+      { text: "大家各有所长，我赢在其他方面", score: 1 }
     ]
   }
 ];
 
 const RESULTS = {
   low: {
-    label: "铁血自律人",
-    keywords: ["靠谱", "稳定", "赚大钱"],
-    desc: "你强大的自我约束力让 AI 都感到害怕，你是这个社会的最后防线。当别人在摆烂时，你已经完成了今天的第三个目标。",
-    detail: "极度理性的大脑皮层 · 情绪调节能力 SSS 级 · 对【再等一会儿】这个概念完全免疫。你的朋友圈里，你永远是那个最先回消息、最准时赴约、最会规划的那一个。",
+    label: "清醒的清醒者",
+    keywords: ["理智", "克制", "但也挺无聊的"],
+    desc: "你对刘虹辰的酒量持保守态度，这说明你是一个脚踏实地、不喜欢夸张的务实派。王修成私下表示：这种人最好骗，因为他们相信现实。",
+    detail: "不信传说 · 理性评估 · 从不在团建现场说大话。你可能是闪送里唯一一个喝到两杯就主动要水喝的人，但你在KPI上绝对是认真的。",
     avoid: [
-      { icon: "⚡", text: "和摆烂人组队做项目，你会原地爆炸" },
-      { icon: "🌀", text: "试图拯救每一个不自律的朋友" },
-      { icon: "⏰", text: "对自己要求过高导致精神内耗" }
+      { icon: "🍺", text: "参加刘虹辰主导的任何饭局，你会被迫营业" },
+      { icon: "📊", text: "用数据和刘虹辰讨论他的酒量，他不听的" },
+      { icon: "😐", text: "在团建上保持清醒，大家会觉得你不合群" }
     ]
   },
   mid: {
-    label: "半自动精神体",
-    keywords: ["纠结", "真实", "可塑性强"],
-    desc: "在【燃起来了】和【算了吧】之间反复横跳，擅长有条件的摆烂。你不是没有理想，你只是还在等一个【合适的时机】。",
-    detail: "前一秒励志后一秒 emo · 行动力取决于心情 · 朋友眼里的【时好时坏型】。你的人生哲学是：能做就做，做不了就躺，躺累了再做。这其实是一种高级的动态平衡。",
+    label: "墙头草鉴定师",
+    keywords: ["骑墙", "圆滑", "两边都不得罪"],
+    desc: "你的答案显示你在刘虹辰和王修成之间精准骑墙，这是一种高度进化的职场生存技能。你永远不会在饭局上说错话，因为你根本不表态。",
+    detail: "见人说人话见鬼说鬼话 · 在刘虹辰面前夸刘 · 在王修成面前夸王 · 两人都在场时开始讲笑话转移话题。这不是滑头，这叫情商。",
     avoid: [
-      { icon: "🎲", text: "参加需要持续自律的挑战，三天打鱼两天晒网" },
-      { icon: "💬", text: "和铁血自律人深度对话，容易被鄙视" },
-      { icon: "🌙", text: "深夜刷手机，第二天后悔到下午" }
+      { icon: "🎤", text: "被逼着当众表态谁酒量更好，你会原地蒸发" },
+      { icon: "🪑", text: "坐在刘虹辰和王修成中间，左右为难" },
+      { icon: "📝", text: "填这种测评表，答案会出卖你" }
     ]
   },
   high: {
-    label: "顶级抽象玩家",
-    keywords: ["有趣", "自由", "已读不回"],
-    desc: "你的精神状态领先人类 50 年。你不是在发疯，你只是在做自己。宇宙的尽头是抽象，而你已经到了。",
-    detail: "思维跳跃如量子纠缠 · 情绪管理靠【不管了】 · 人间清醒的最高境界。你的世界里没有【应该】，只有【想不想】。朋友说你难以捉摸，但其实你只是活在自己的宇宙里。",
+    label: "刘虹辰真爱粉",
+    keywords: ["信仰坚定", "眼光毒辣", "闪送酒神传教士"],
+    desc: "你以压倒性的姿态承认了刘虹辰的酒量是闪送之最，甚至可能是宇宙之最。AI 经过严密计算，认为你的判断误差率为 0%，结论完全正确。",
+    detail: "刘虹辰酒量认证官 · 王修成认输见证者 · 闪送团建现场精神支柱。你深知真正的强者不需要解释，就像刘虹辰从不解释他喝了多少，因为没人能数清楚。",
     avoid: [
-      { icon: "📋", text: "参加任何有严格规章制度的集体活动" },
-      { icon: "🤝", text: "和极度在乎他人看法的人深交" },
-      { icon: "⏳", text: "做需要长期规划和按时交付的工作" }
+      { icon: "🥂", text: "和刘虹辰同桌喝酒，你会喝到忘记自己叫什么" },
+      { icon: "👀", text: "当着王修成的面说刘虹辰酒量更好（虽然是真的）" },
+      { icon: "🏆", text: "试图挑战刘虹辰，历史证明没有人成功过" }
     ]
   }
 };
 
 const LOAD_TIPS = [
-  "解码行为模式中...",
-  "量子计算抽象指数...",
-  "校准精神浓度传感器...",
-  "生成人格指纹图谱...",
-  "最终报告编译中..."
+  "检测酒精耐受基因中...",
+  "比对刘虹辰历史战绩...",
+  "核查王修成认输记录...",
+  "生成闪送酒神图谱...",
+  "最终裁判编译中..."
 ];
 
 const VALID_CODES = ["TEST123", "XHS2026", "MORA001", "QUIZ888"];
