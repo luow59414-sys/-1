@@ -1,459 +1,452 @@
-{\rtf1\ansi\ansicpg936\cocoartf2869
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>2026 精神状态大普查</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --sage:#8fad9b;--sage-light:#c5d8cc;--sage-ultra:#eaf2ee;
+    --blush:#c9a8a0;--blush-light:#e8d4d0;--blush-ultra:#f7efed;
+    --stone:#b5a99a;--stone-light:#d6cfc8;--stone-ultra:#f2ede9;
+    --ink:#3d3530;--ink-mid:#6b5f58;--ink-soft:#9b8f88;
+    --cream:#faf8f5;--white:#ffffff;
+    --r:20px;--gap:14px
+  }
+  html,body{height:100%;background:var(--cream);font-family:'Noto Sans SC',sans-serif;color:var(--ink);overflow:hidden}
+  #app{height:100vh;overflow:hidden;position:relative;max-width:480px;margin:0 auto}
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="zh">\
-<head>\
-<meta charset="UTF-8">\
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">\
-<title>2026 \uc0\u31934 \u31070 \u29366 \u24577 \u22823 \u26222 \u26597 </title>\
-<link rel="preconnect" href="https://fonts.googleapis.com">\
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">\
-<style>\
-  *\{margin:0;padding:0;box-sizing:border-box\}\
-  :root\{\
-    --sage:#8fad9b;--sage-light:#c5d8cc;--sage-ultra:#eaf2ee;\
-    --blush:#c9a8a0;--blush-light:#e8d4d0;--blush-ultra:#f7efed;\
-    --stone:#b5a99a;--stone-light:#d6cfc8;--stone-ultra:#f2ede9;\
-    --ink:#3d3530;--ink-mid:#6b5f58;--ink-soft:#9b8f88;\
-    --cream:#faf8f5;--white:#ffffff;\
-    --r:20px;--gap:14px\
-  \}\
-  html,body\{height:100%;background:var(--cream);font-family:'Noto Sans SC',sans-serif;color:var(--ink);overflow:hidden\}\
-  #app\{height:100vh;overflow:hidden;position:relative;max-width:480px;margin:0 auto\}\
-\
-  .screen\{position:absolute;inset:0;display:flex;flex-direction:column;transition:all .5s cubic-bezier(.4,0,.2,1);overflow:hidden\}\
-  .screen.hidden\{opacity:0;pointer-events:none;transform:translateX(60px)\}\
-  .screen.prev\{transform:translateX(-60px);opacity:0;pointer-events:none\}\
-\
-  /* === COVER === */\
-  #cover\{background:linear-gradient(160deg,#eaf2ee 0%,#f7efed 50%,#f2ede9 100%);align-items:center;justify-content:center;padding:32px 28px\}\
-  .cover-deco\{position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#c5d8cc55,transparent 70%)\}\
-  .cover-deco2\{position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#e8d4d055,transparent 70%)\}\
-  .cover-tag\{background:var(--blush);color:#fff;font-size:11px;letter-spacing:2px;padding:5px 14px;border-radius:30px;margin-bottom:20px;display:inline-block\}\
-  .cover-title\{font-family:'Noto Serif SC',serif;font-size:26px;font-weight:700;line-height:1.45;color:var(--ink);text-align:center;margin-bottom:10px\}\
-  .cover-title span\{color:var(--blush)\}\
-  .cover-sub\{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-bottom:6px;line-height:1.8\}\
-  .cover-count\{display:flex;align-items:center;gap:8px;background:#fff;border-radius:30px;padding:8px 18px;margin:18px 0 32px;box-shadow:0 2px 16px rgba(0,0,0,.06)\}\
-  .dot\{width:8px;height:8px;border-radius:50%;background:var(--sage);animation:pulse 2s infinite\}\
-  @keyframes pulse\{0%,100%\{opacity:1;transform:scale(1)\}50%\{opacity:.5;transform:scale(.8)\}\}\
-  .count-text\{font-size:12px;color:var(--ink-mid)\}\
-  .count-text strong\{color:var(--sage);font-weight:700\}\
-  .btn-main\{background:var(--ink);color:#fff;border:none;border-radius:var(--r);padding:18px 48px;font-size:16px;font-family:'Noto Sans SC',sans-serif;font-weight:500;cursor:pointer;letter-spacing:1px;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s\}\
-  .btn-main:hover\{transform:translateY(-2px);box-shadow:0 8px 24px rgba(61,53,48,.2)\}\
-  .btn-main:active\{transform:scale(.97)\}\
-  .cover-note\{font-size:11px;color:var(--ink-soft);margin-top:16px;text-align:center;opacity:.7\}\
-\
-  /* === BLOCKED === */\
-  #blocked\{background:var(--cream);align-items:center;justify-content:center;padding:40px 28px\}\
-  .blocked-inner\{width:100%\}\
-  .blocked-icon\{font-size:48px;margin-bottom:20px;text-align:center\}\
-  .blocked-box\{background:#fff;border-radius:var(--r);padding:28px 24px;border:1px solid var(--stone-light);text-align:center\}\
-  .blocked-title\{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px\}\
-  .blocked-desc\{font-size:13px;color:var(--ink-mid);line-height:1.8;margin-bottom:20px\}\
-  .code-row\{display:flex;gap:8px;margin-bottom:8px\}\
-  .gate-code-input\{flex:1;border:1.5px solid var(--stone-light);border-radius:12px;padding:14px 16px;font-size:15px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);background:var(--cream);outline:none;text-align:center;letter-spacing:2px;transition:border-color .2s\}\
-  .gate-code-input:focus\{border-color:var(--sage)\}\
-  .gate-submit\{background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:14px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;white-space:nowrap;transition:opacity .2s\}\
-  .gate-submit:hover\{opacity:.85\}\
-  .gate-err\{font-size:12px;color:var(--blush);min-height:20px;text-align:center\}\
-  .blocked-tip\{font-size:11px;color:var(--ink-soft);margin-top:16px;line-height:1.7;text-align:center\}\
-\
-  /* === QUIZ === */\
-  #quiz\{background:var(--cream)\}\
-  .progress-bar\{background:rgba(250,248,245,.95);backdrop-filter:blur(10px);padding:16px 24px 12px;border-bottom:1px solid var(--stone-light);flex-shrink:0\}\
-  .progress-meta\{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px\}\
-  .prog-label\{font-size:11px;color:var(--ink-soft);letter-spacing:1px\}\
-  .prog-num\{font-size:13px;font-weight:700;color:var(--blush)\}\
-  .prog-track\{height:3px;background:var(--stone-light);border-radius:2px;overflow:hidden\}\
-  .prog-fill\{height:100%;background:linear-gradient(90deg,var(--sage),var(--blush));border-radius:2px;transition:width .4s cubic-bezier(.4,0,.2,1)\}\
-  .quiz-body\{flex:1;overflow-y:auto;padding:28px 22px 80px;-webkit-overflow-scrolling:touch\}\
-  .q-num\{font-size:11px;color:var(--sage);letter-spacing:2px;margin-bottom:12px;font-weight:500\}\
-  .q-text\{font-family:'Noto Serif SC',serif;font-size:19px;font-weight:600;line-height:1.65;color:var(--ink);margin-bottom:28px;background:#fff;border-radius:var(--r);padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.04)\}\
-  .options\{display:flex;flex-direction:column;gap:var(--gap)\}\
-  .opt\{background:#fff;border:1.5px solid var(--stone-light);border-radius:var(--r);padding:16px 20px;font-size:14px;line-height:1.6;color:var(--ink-mid);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;text-align:left;font-family:'Noto Sans SC',sans-serif;width:100%\}\
-  .opt-bg\{position:absolute;inset:0;background:var(--sage-ultra);opacity:0;transition:opacity .2s\}\
-  .opt:hover .opt-bg\{opacity:1\}\
-  .opt:hover\{border-color:var(--sage);color:var(--ink);transform:translateX(4px)\}\
-  .opt.selected\{border-color:var(--blush);background:var(--blush-ultra);color:var(--ink)\}\
-  .opt.selected .opt-check\{opacity:1\}\
-  .opt-check\{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--blush);opacity:0;transition:opacity .2s\}\
-  .opt-text\{position:relative;z-index:1\}\
-\
-  /* === LOADING === */\
-  #loading\{background:var(--cream);align-items:center;justify-content:center;padding:40px 28px;text-align:center\}\
-  .loading-emoji\{font-size:52px;margin-bottom:24px;animation:float 3s ease-in-out infinite;display:block\}\
-  @keyframes float\{0%,100%\{transform:translateY(0)\}50%\{transform:translateY(-10px)\}\}\
-  .loading-title\{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.6\}\
-  .loading-sub\{font-size:12px;color:var(--ink-soft);margin-bottom:36px;line-height:1.8\}\
-  .load-pct\{font-size:32px;font-weight:700;color:var(--blush);margin-bottom:12px;font-family:'Noto Serif SC',serif\}\
-  .load-track\{width:100%;max-width:280px;height:4px;background:var(--stone-light);border-radius:2px;overflow:hidden;margin:0 auto 12px\}\
-  .load-fill\{height:100%;width:0%;background:linear-gradient(90deg,var(--sage),var(--blush));border-radius:2px;transition:width .3s ease\}\
-  .load-tip\{font-size:11px;color:var(--ink-soft);letter-spacing:.5px;margin-top:6px\}\
-\
-  /* === RESULT === */\
-  #result\{background:var(--cream);overflow-y:auto;-webkit-overflow-scrolling:touch\}\
-  .result-hero\{background:linear-gradient(160deg,#eaf2ee,#f7efed);padding:52px 28px 36px;text-align:center\}\
-  .result-badge\{display:inline-block;background:var(--blush);color:#fff;font-size:11px;padding:5px 16px;border-radius:30px;letter-spacing:2px;margin-bottom:16px\}\
-  .result-label\{font-family:'Noto Serif SC',serif;font-size:38px;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.3\}\
-  .result-keywords\{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px\}\
-  .kw\{background:#fff;border:1px solid var(--sage-light);color:var(--sage);font-size:12px;padding:5px 14px;border-radius:20px\}\
-  .result-score\{font-size:12px;color:var(--ink-soft)\}\
-  .result-body\{padding:20px 22px 20px\}\
-  .result-card\{background:#fff;border-radius:var(--r);padding:22px;margin-bottom:14px;border:1px solid var(--stone-light)\}\
-  .rc-label\{font-size:10px;color:var(--stone);letter-spacing:2px;margin-bottom:12px;display:flex;align-items:center;gap:6px\}\
-  .rc-label::before\{content:'';display:inline-block;width:14px;height:2px;background:var(--blush);border-radius:1px\}\
-  .rc-text\{font-size:14px;line-height:1.9;color:var(--ink-mid)\}\
-  .avoid-item\{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--stone-light)\}\
-  .avoid-item:last-child\{border-bottom:none;padding-bottom:0\}\
-  .avoid-item:first-child\{padding-top:0\}\
-  .avoid-icon\{font-size:20px;flex-shrink:0;margin-top:1px\}\
-  .avoid-text\{font-size:13px;line-height:1.75;color:var(--ink-mid)\}\
-  .save-hint\{background:var(--ink);color:#fff;margin:0 22px 14px;border-radius:var(--r);padding:18px 20px;text-align:center;font-size:13px;line-height:1.6\}\
-  .save-hint strong\{display:block;font-size:15px;margin-bottom:5px;letter-spacing:.5px\}\
-  .btn-retry\{display:block;width:calc(100% - 44px);margin:0 22px 40px;background:#fff;border:1.5px solid var(--stone-light);border-radius:var(--r);padding:15px;text-align:center;font-size:14px;color:var(--ink-mid);cursor:pointer;font-family:'Noto Sans SC',sans-serif;transition:all .2s\}\
-  .btn-retry:hover\{border-color:var(--blush);color:var(--blush)\}\
-</style>\
-</head>\
-<body>\
-<div id="app">\
-\
-<!-- BLOCKED SCREEN -->\
-<div class="screen hidden" id="blocked">\
-  <div class="blocked-inner">\
-    <div class="blocked-icon">\uc0\u9888 \u65039 </div>\
-    <div class="blocked-box">\
-      <div class="blocked-title">\uc0\u35775 \u38382 \u21463 \u38480 </div>\
-      <div class="blocked-desc">\
-        \uc0\u35831 \u36890 \u36807 \u23448 \u26041 \u28192 \u36947 \u65288 \u23567 \u32418 \u20070 \u24215 \u38138 \u65289 \u33719 \u21462 \u21512 \u27861 \u27979 \u35797 \u38142 \u25509 \u21518 \u20877 \u35775 \u38382 \u26412 \u39029 \u38754 \u12290 <br><br>\
-        \uc0\u22914 \u24050 \u26377 \u27979 \u35780 \u30721 \u65292 \u35831 \u22312 \u19979 \u26041 \u36755 \u20837 \u65306 \
-      </div>\
-      <div class="code-row">\
-        <input class="gate-code-input" id="inline-code" placeholder="\uc0\u36755 \u20837 \u27979 \u35780 \u30721 ..." maxlength="20">\
-        <button class="gate-submit" id="inline-submit">\uc0\u39564 \u35777 </button>\
-      </div>\
-      <div class="gate-err" id="inline-err"></div>\
-      <div class="blocked-tip">\
-        \uc0\u31034 \u20363 \u26377 \u25928 \u30721 \u65306 TEST123 / XHS2026<br>\
-        \uc0\u25110 \u36890 \u36807 \u38142 \u25509 \u21442 \u25968 \u35775 \u38382 \u65306 <code style="font-size:10px;background:var(--stone-ultra);padding:2px 6px;border-radius:4px">/?code=TEST123</code>\
-      </div>\
-    </div>\
-  </div>\
-</div>\
-\
-<!-- COVER SCREEN -->\
-<div class="screen hidden" id="cover">\
-  <div class="cover-deco"></div>\
-  <div class="cover-deco2"></div>\
-  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%">\
-    <div class="cover-tag">2026 \uc0\u31934 \u31070 \u29366 \u24577 \u22823 \u26222 \u26597 </div>\
-    <div class="cover-title">\uc0\u27979 \u27979 \u20320 \u30340 <br><span>\u12300 \u25277 \u35937 \u20154 \u26684 \u12301 </span>\u26631 \u31614 </div>\
-    <div class="cover-sub">\
-      5 \uc0\u36947 \u28789 \u39746 \u25335 \u38382  \'b7 3 \u20998 \u38047  \'b7 AI \u28145 \u24230 \u35299 \u26512 <br>\
-      \uc0\u27979 \u20934 \u29575  <strong style="color:var(--blush)">99%</strong>\u65288 \u27010 \u19981 \u36127 \u36131 \u65289 \
-    </div>\
-    <div class="cover-count">\
-      <div class="dot"></div>\
-      <div class="count-text">\uc0\u24050 \u26377  <strong>12,508</strong> \u20154 \u21442 \u19982 \u27979 \u35780 </div>\
-    </div>\
-    <button class="btn-main" id="start-btn">\uc0\u55357 \u56622  \u24320 \u21551 \u28789 \u39746 \u25335 \u38382 </button>\
-    <div class="cover-note">\uc0\u27979 \u35780 \u32467 \u26524 \u20165 \u20379 \u23089 \u20048  \'b7 \u35831 \u29702 \u24615 \u30475 \u24453 \u20320 \u30340 \u25277 \u35937 \u31243 \u24230 </div>\
-  </div>\
-</div>\
-\
-<!-- QUIZ SCREEN -->\
-<div class="screen hidden" id="quiz">\
-  <div class="progress-bar">\
-    <div class="progress-meta">\
-      <div class="prog-label">\uc0\u28789 \u39746 \u25335 \u38382 \u36827 \u24230 </div>\
-      <div class="prog-num" id="prog-num">1 / 5</div>\
-    </div>\
-    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:20%"></div></div>\
-  </div>\
-  <div class="quiz-body">\
-    <div class="q-num" id="q-num">\uc0\u31532  01 \u39064 </div>\
-    <div class="q-text" id="q-text"></div>\
-    <div class="options" id="options"></div>\
-  </div>\
-</div>\
-\
-<!-- LOADING SCREEN -->\
-<div class="screen hidden" id="loading">\
-  <span class="loading-emoji">\uc0\u55358 \u56800 </span>\
-  <div class="loading-title">AI \uc0\u27491 \u22312 \u26681 \u25454 \u20320 \u30340 <br>\u31070 \u32463 \u31361 \u35302 \u20998 \u24067 \u29983 \u25104 \u25253 \u21578 ...</div>\
-  <div class="loading-sub">\uc0\u27491 \u22312 \u20998 \u26512 \u65306 \u25277 \u35937 \u25351 \u25968  \'b7 \u31934 \u31070 \u27987 \u24230  \'b7 \u25670 \u28866 \u21322 \u24452 </div>\
-  <div class="load-pct" id="load-pct">0%</div>\
-  <div class="load-track"><div class="load-fill" id="load-fill"></div></div>\
-  <div class="load-tip" id="load-tip">\uc0\u35299 \u30721 \u34892 \u20026 \u27169 \u24335 \u20013 ...</div>\
-</div>\
-\
-<!-- RESULT SCREEN -->\
-<div class="screen hidden" id="result">\
-  <div class="result-hero">\
-    <div class="result-badge">\uc0\u20320 \u30340 \u20154 \u26684 \u26631 \u31614 </div>\
-    <div class="result-label" id="res-label">\'97</div>\
-    <div class="result-keywords" id="res-keywords"></div>\
-    <div class="result-score" id="res-score"></div>\
-  </div>\
-  <div class="result-body">\
-    <div class="result-card">\
-      <div class="rc-label">\uc0\u26680 \u24515 \u35299 \u26512 </div>\
-      <div class="rc-text" id="res-desc"></div>\
-    </div>\
-    <div class="result-card">\
-      <div class="rc-label">\uc0\u31934 \u31070 \u29366 \u24577 \u21078 \u38754 </div>\
-      <div class="rc-text" id="res-detail"></div>\
-    </div>\
-    <div class="result-card">\
-      <div class="rc-label">\uc0\u36991 \u38647 \u25351 \u21335 </div>\
-      <div id="res-avoid"></div>\
-    </div>\
-  </div>\
-  <div class="save-hint">\
-    <strong>\uc0\u55357 \u56568  \u38271 \u25353 \u20445 \u23384 \u32467 \u26524 \u22270 </strong>\
-    \uc0\u25130 \u22270 \u20998 \u20139 \u32473 \u26379 \u21451 \u65292 \u30475 \u30475  ta \u30340 \u25277 \u35937 \u31243 \u24230 \
-  </div>\
-  <button class="btn-retry" id="retry-btn">\uc0\u8617  \u20877 \u27979 \u19968 \u27425 </button>\
-</div>\
-\
-</div>\
-\
-<script>\
-const QUIZ = [\
-  \{\
-    id: 1,\
-    q: "\uc0\u21608 \u19968 \u26089 \u19978 \u38393 \u38047 \u21709 \u20102  5 \u27425 \u20320 \u37117 \u27809 \u36215 \u65292 \u27492 \u26102 \u20320 \u33041 \u23376 \u37324 \u22312 \u24819 \u65311 ",\
-    options: [\
-      \{ text: "\uc0\u22823 \u19981 \u20102 \u36766 \u32844 \u65292 \u26126 \u22825 \u23601 \u21435 \u27969 \u28010 ", score: 3 \},\
-      \{ text: "\uc0\u20877 \u36538  1 \u20998 \u38047 \u65292 \u23601  1 \u20998 \u38047 ", score: 2 \},\
-      \{ text: "\uc0\u35745 \u31639 \u36831 \u21040 \u25187 \u22810 \u23569 \u38065 \u65292 \u24182 \u31934 \u20934 \u36215 \u24202 ", score: 1 \}\
-    ]\
-  \},\
-  \{\
-    id: 2,\
-    q: "\uc0\u32769 \u26495 \u22312 \u32676 \u37324 \u21457 \u20102 \u19968 \u20010 \u32418 \u21253 \u65292 \u20294 \u27809 \u20154 \u35828 \u35805 \u65292 \u20320 \u20250 \u65311 ",\
-    options: [\
-      \{ text: "\uc0\u28779 \u36895 \u39046 \u23436 \u24182 \u21457 \u36865 \u12304 \u35874 \u35874 \u32769 \u26495 \u12305 ", score: 1 \},\
-      \{ text: "\uc0\u35266 \u23519  5 \u20998 \u38047 \u65292 \u30475 \u21035 \u20154 \u39046 \u19981 \u39046 ", score: 2 \},\
-      \{ text: "\uc0\u39046 \u23436 \u35013 \u27515 \u65292 \u32477 \u19981 \u22238 \u22797 ", score: 3 \}\
-    ]\
-  \},\
-  \{\
-    id: 3,\
-    q: "\uc0\u28145 \u22812 \u31361 \u28982 \u24819 \u21507 \u23477 \u22812 \u65292 \u20294 \u21448 \u24597 \u32982 \u65292 \u27492 \u26102 \u20320 \u30340 \u24515 \u24577 \u26159 \u65311 ",\
-    options: [\
-      \{ text: "\uc0\u31639 \u20102 \u65292 \u19981 \u21507 \u20250 \u24515 \u24773 \u19981 \u22909 \u65292 \u24515 \u24773 \u19981 \u22909 \u20250 \u32769 \u24471 \u24555 ", score: 3 \},\
-      \{ text: "\uc0\u30475  10 \u20010 \u21507 \u25773 \u35270 \u39057 \u65292 \u20551 \u35013 \u33258 \u24049 \u21507 \u36807 \u20102 ", score: 2 \},\
-      \{ text: "\uc0\u21917 \u19968 \u26479 \u30333 \u24320 \u27700 \u65292 \u26263 \u31034 \u33258 \u24049 \u39281 \u20102 ", score: 1 \}\
-    ]\
-  \},\
-  \{\
-    id: 4,\
-    q: "\uc0\u36935 \u21040 \u24456 \u20037 \u27809 \u35265 \u30340 \u29087 \u20154 \u36814 \u38754 \u36208 \u26469 \u65292 \u20320 \u31532 \u19968 \u21453 \u24212 \u65311 ",\
-    options: [\
-      \{ text: "\uc0\u28779 \u36895 \u20302 \u22836 \u29609 \u25163 \u26426 \u65292 \u31048 \u31095 \u23545 \u26041 \u30475 \u19981 \u35265 \u25105 ", score: 3 \},\
-      \{ text: "\uc0\u22823 \u33041 \u31354 \u30333 \u65292 \u20725 \u30828 \u22320 \u24494 \u31505 \u28857 \u22836 ", score: 2 \},\
-      \{ text: "\uc0\u28909 \u24773 \u25171 \u25307 \u21628 \u65306 \u22909 \u20037 \u19981 \u35265 \u65281 \u25913 \u22825 \u32422 \u39277 \u65281 ", score: 1 \}\
-    ]\
-  \},\
-  \{\
-    id: 5,\
-    q: "\uc0\u22914 \u26524 \u20320 \u30340 \u29983 \u27963 \u34987 \u25293 \u25104 \u30005 \u24433 \u65292 \u29255 \u21517 \u22823 \u27010 \u20250 \u21483 \u65311 ",\
-    options: [\
-      \{ text: "\uc0\u12298 \u32477 \u19981 \u26381 \u36755 \u30340 \u25171 \u24037 \u20154 \u12299 ", score: 1 \},\
-      \{ text: "\uc0\u12298 \u20114 \u32852 \u32593 \u24223 \u26009 \u22238 \u25910 \u31449 \u12299 ", score: 2 \},\
-      \{ text: "\uc0\u12298 \u19968 \u20010 \u20154 \u30340 \u38745 \u38899 \u27169 \u24335 \u12299 ", score: 3 \}\
-    ]\
-  \}\
-];\
-\
-const RESULTS = \{\
-  low: \{\
-    label: "\uc0\u38081 \u34880 \u33258 \u24459 \u20154 ",\
-    keywords: ["\uc0\u38752 \u35889 ", "\u31283 \u23450 ", "\u36186 \u22823 \u38065 "],\
-    desc: "\uc0\u20320 \u24378 \u22823 \u30340 \u33258 \u25105 \u32422 \u26463 \u21147 \u35753  AI \u37117 \u24863 \u21040 \u23475 \u24597 \u65292 \u20320 \u26159 \u36825 \u20010 \u31038 \u20250 \u30340 \u26368 \u21518 \u38450 \u32447 \u12290 \u24403 \u21035 \u20154 \u22312 \u25670 \u28866 \u26102 \u65292 \u20320 \u24050 \u32463 \u23436 \u25104 \u20102 \u20170 \u22825 \u30340 \u31532 \u19977 \u20010 \u30446 \u26631 \u12290 ",\
-    detail: "\uc0\u26497 \u24230 \u29702 \u24615 \u30340 \u22823 \u33041 \u30382 \u23618  \'b7 \u24773 \u32490 \u35843 \u33410 \u33021 \u21147  SSS \u32423  \'b7 \u23545 \u12304 \u20877 \u31561 \u19968 \u20250 \u20799 \u12305 \u36825 \u20010 \u27010 \u24565 \u23436 \u20840 \u20813 \u30123 \u12290 \u20320 \u30340 \u26379 \u21451 \u22280 \u37324 \u65292 \u20320 \u27704 \u36828 \u26159 \u37027 \u20010 \u26368 \u20808 \u22238 \u28040 \u24687 \u12289 \u26368 \u20934 \u26102 \u36212 \u32422 \u12289 \u26368 \u20250 \u35268 \u21010 \u30340 \u37027 \u19968 \u20010 \u12290 ",\
-    avoid: [\
-      \{ icon: "\uc0\u9889 ", text: "\u21644 \u25670 \u28866 \u20154 \u32452 \u38431 \u20570 \u39033 \u30446 \u65292 \u20320 \u20250 \u21407 \u22320 \u29190 \u28856 " \},\
-      \{ icon: "\uc0\u55356 \u57088 ", text: "\u35797 \u22270 \u25327 \u25937 \u27599 \u19968 \u20010 \u19981 \u33258 \u24459 \u30340 \u26379 \u21451 " \},\
-      \{ icon: "\uc0\u9200 ", text: "\u23545 \u33258 \u24049 \u35201 \u27714 \u36807 \u39640 \u23548 \u33268 \u31934 \u31070 \u20869 \u32791 " \}\
-    ]\
-  \},\
-  mid: \{\
-    label: "\uc0\u21322 \u33258 \u21160 \u31934 \u31070 \u20307 ",\
-    keywords: ["\uc0\u32416 \u32467 ", "\u30495 \u23454 ", "\u21487 \u22609 \u24615 \u24378 "],\
-    desc: "\uc0\u22312 \u12304 \u29123 \u36215 \u26469 \u20102 \u12305 \u21644 \u12304 \u31639 \u20102 \u21543 \u12305 \u20043 \u38388 \u21453 \u22797 \u27178 \u36339 \u65292 \u25797 \u38271 \u26377 \u26465 \u20214 \u30340 \u25670 \u28866 \u12290 \u20320 \u19981 \u26159 \u27809 \u26377 \u29702 \u24819 \u65292 \u20320 \u21482 \u26159 \u36824 \u22312 \u31561 \u19968 \u20010 \u12304 \u21512 \u36866 \u30340 \u26102 \u26426 \u12305 \u12290 ",\
-    detail: "\uc0\u21069 \u19968 \u31186 \u21169 \u24535 \u21518 \u19968 \u31186  emo \'b7 \u34892 \u21160 \u21147 \u21462 \u20915 \u20110 \u24515 \u24773  \'b7 \u26379 \u21451 \u30524 \u37324 \u30340 \u12304 \u26102 \u22909 \u26102 \u22351 \u22411 \u12305 \u12290 \u20320 \u30340 \u20154 \u29983 \u21746 \u23398 \u26159 \u65306 \u33021 \u20570 \u23601 \u20570 \u65292 \u20570 \u19981 \u20102 \u23601 \u36538 \u65292 \u36538 \u32047 \u20102 \u20877 \u20570 \u12290 \u36825 \u20854 \u23454 \u26159 \u19968 \u31181 \u39640 \u32423 \u30340 \u21160 \u24577 \u24179 \u34913 \u12290 ",\
-    avoid: [\
-      \{ icon: "\uc0\u55356 \u57266 ", text: "\u21442 \u21152 \u38656 \u35201 \u25345 \u32493 \u33258 \u24459 \u30340 \u25361 \u25112 \u65292 \u19977 \u22825 \u25171 \u40060 \u20004 \u22825 \u26194 \u32593 " \},\
-      \{ icon: "\uc0\u55357 \u56492 ", text: "\u21644 \u38081 \u34880 \u33258 \u24459 \u20154 \u28145 \u24230 \u23545 \u35805 \u65292 \u23481 \u26131 \u34987 \u37145 \u35270 " \},\
-      \{ icon: "\uc0\u55356 \u57113 ", text: "\u28145 \u22812 \u21047 \u25163 \u26426 \u65292 \u31532 \u20108 \u22825 \u21518 \u24724 \u21040 \u19979 \u21320 " \}\
-    ]\
-  \},\
-  high: \{\
-    label: "\uc0\u39030 \u32423 \u25277 \u35937 \u29609 \u23478 ",\
-    keywords: ["\uc0\u26377 \u36259 ", "\u33258 \u30001 ", "\u24050 \u35835 \u19981 \u22238 "],\
-    desc: "\uc0\u20320 \u30340 \u31934 \u31070 \u29366 \u24577 \u39046 \u20808 \u20154 \u31867  50 \u24180 \u12290 \u20320 \u19981 \u26159 \u22312 \u21457 \u30127 \u65292 \u20320 \u21482 \u26159 \u22312 \u20570 \u33258 \u24049 \u12290 \u23431 \u23449 \u30340 \u23613 \u22836 \u26159 \u25277 \u35937 \u65292 \u32780 \u20320 \u24050 \u32463 \u21040 \u20102 \u12290 ",\
-    detail: "\uc0\u24605 \u32500 \u36339 \u36291 \u22914 \u37327 \u23376 \u32416 \u32544  \'b7 \u24773 \u32490 \u31649 \u29702 \u38752 \u12304 \u19981 \u31649 \u20102 \u12305  \'b7 \u20154 \u38388 \u28165 \u37266 \u30340 \u26368 \u39640 \u22659 \u30028 \u12290 \u20320 \u30340 \u19990 \u30028 \u37324 \u27809 \u26377 \u12304 \u24212 \u35813 \u12305 \u65292 \u21482 \u26377 \u12304 \u24819 \u19981 \u24819 \u12305 \u12290 \u26379 \u21451 \u35828 \u20320 \u38590 \u20197 \u25417 \u25720 \u65292 \u20294 \u20854 \u23454 \u20320 \u21482 \u26159 \u27963 \u22312 \u33258 \u24049 \u30340 \u23431 \u23449 \u37324 \u12290 ",\
-    avoid: [\
-      \{ icon: "\uc0\u55357 \u56523 ", text: "\u21442 \u21152 \u20219 \u20309 \u26377 \u20005 \u26684 \u35268 \u31456 \u21046 \u24230 \u30340 \u38598 \u20307 \u27963 \u21160 " \},\
-      \{ icon: "\uc0\u55358 \u56605 ", text: "\u21644 \u26497 \u24230 \u22312 \u20046 \u20182 \u20154 \u30475 \u27861 \u30340 \u20154 \u28145 \u20132 " \},\
-      \{ icon: "\uc0\u9203 ", text: "\u20570 \u38656 \u35201 \u38271 \u26399 \u35268 \u21010 \u21644 \u25353 \u26102 \u20132 \u20184 \u30340 \u24037 \u20316 " \}\
-    ]\
-  \}\
-\};\
-\
-const LOAD_TIPS = [\
-  "\uc0\u35299 \u30721 \u34892 \u20026 \u27169 \u24335 \u20013 ...",\
-  "\uc0\u37327 \u23376 \u35745 \u31639 \u25277 \u35937 \u25351 \u25968 ...",\
-  "\uc0\u26657 \u20934 \u31934 \u31070 \u27987 \u24230 \u20256 \u24863 \u22120 ...",\
-  "\uc0\u29983 \u25104 \u20154 \u26684 \u25351 \u32441 \u22270 \u35889 ...",\
-  "\uc0\u26368 \u32456 \u25253 \u21578 \u32534 \u35793 \u20013 ..."\
-];\
-\
-const VALID_CODES = ["TEST123", "XHS2026", "MORA001", "QUIZ888"];\
-\
-let currentQ = 0, totalScore = 0, validAccess = false;\
-\
-function $(id) \{ return document.getElementById(id); \}\
-\
-function showScreen(id) \{\
-  ['blocked', 'cover', 'quiz', 'loading', 'result'].forEach(s => \{\
-    $(s).classList.toggle('hidden', s !== id);\
-  \});\
-  if (id === 'result') $(id).scrollTop = 0;\
-\}\
-\
-function checkCode(code) \{\
-  const c = (code || '').trim().toUpperCase();\
-  return VALID_CODES.includes(c) || c.length >= 6;\
-\}\
-\
-function getURLCode() \{\
-  try \{\
-    return new URLSearchParams(window.location.search).get('code');\
-  \} catch (e) \{ return null; \}\
-\}\
-\
-function init() \{\
-  const urlCode = getURLCode();\
-  if (urlCode && checkCode(urlCode)) \{\
-    validAccess = true;\
-    showScreen('cover');\
-  \} else \{\
-    showScreen('blocked');\
-  \}\
-\}\
-\
-// Blocked screen\
-$('inline-submit').addEventListener('click', function () \{\
-  const v = $('inline-code').value;\
-  if (checkCode(v)) \{\
-    validAccess = true;\
-    showScreen('cover');\
-  \} else \{\
-    $('inline-err').textContent = '\uc0\u27979 \u35780 \u30721 \u26080 \u25928 \u65292 \u35831 \u26816 \u26597 \u21518 \u37325 \u35797  \u55357 \u56911 ';\
-    $('inline-code').style.borderColor = 'var(--blush)';\
-    setTimeout(() => \{\
-      $('inline-code').style.borderColor = '';\
-      $('inline-err').textContent = '';\
-    \}, 2500);\
-  \}\
-\});\
-$('inline-code').addEventListener('keydown', e => \{ if (e.key === 'Enter') $('inline-submit').click(); \});\
-\
-// Cover\
-$('start-btn').addEventListener('click', function () \{\
-  currentQ = 0; totalScore = 0;\
-  loadQuestion();\
-  showScreen('quiz');\
-\});\
-\
-function loadQuestion() \{\
-  const q = QUIZ[currentQ];\
-  const n = currentQ + 1;\
-  $('prog-num').textContent = n + ' / ' + QUIZ.length;\
-  $('prog-fill').style.width = (n / QUIZ.length * 100) + '%';\
-  $('q-num').textContent = '\uc0\u31532  ' + String(n).padStart(2, '0') + ' \u39064 ';\
-  $('q-text').textContent = q.q;\
-\
-  const opts = $('options');\
-  opts.innerHTML = '';\
-  q.options.forEach(function (o) \{\
-    const btn = document.createElement('button');\
-    btn.className = 'opt';\
-    btn.innerHTML = '<div class="opt-bg"></div><span class="opt-text">' + o.text + '</span><span class="opt-check">\uc0\u10003 </span>';\
-    btn.addEventListener('click', function () \{\
-      if (btn.classList.contains('selected')) return;\
-      document.querySelectorAll('.opt').forEach(b => b.style.pointerEvents = 'none');\
-      btn.classList.add('selected');\
-      setTimeout(function () \{\
-        totalScore += o.score;\
-        currentQ++;\
-        if (currentQ < QUIZ.length) \{\
-          loadQuestion();\
-        \} else \{\
-          startLoading();\
-        \}\
-      \}, 300);\
-    \});\
-    opts.appendChild(btn);\
-  \});\
-\}\
-\
-function startLoading() \{\
-  showScreen('loading');\
-  let pct = 0, tipIdx = 0;\
-  const fill = $('load-fill');\
-  const pctEl = $('load-pct');\
-  const tipEl = $('load-tip');\
-\
-  const iv = setInterval(function () \{\
-    pct += Math.random() * 7 + 2;\
-    if (pct > 100) pct = 100;\
-    fill.style.width = Math.floor(pct) + '%';\
-    pctEl.textContent = Math.floor(pct) + '%';\
-    const ti = Math.min(Math.floor(pct / 22), LOAD_TIPS.length - 1);\
-    if (ti !== tipIdx) \{ tipIdx = ti; tipEl.textContent = LOAD_TIPS[ti]; \}\
-    if (pct >= 100) \{ clearInterval(iv); setTimeout(showResult, 500); \}\
-  \}, 120);\
-\}\
-\
-function showResult() \{\
-  let r;\
-  if (totalScore <= 8) r = RESULTS.low;\
-  else if (totalScore <= 12) r = RESULTS.mid;\
-  else r = RESULTS.high;\
-\
-  $('res-label').textContent = r.label;\
-  $('res-keywords').innerHTML = r.keywords.map(k => '<span class="kw">' + k + '</span>').join('');\
-  $('res-score').textContent = '\uc0\u26412 \u27425 \u24471 \u20998 \u65306 ' + totalScore + ' \u20998  \'b7 \u20849  ' + QUIZ.length + ' \u39064 ';\
-  $('res-desc').textContent = r.desc;\
-  $('res-detail').textContent = r.detail;\
-\
-  const av = $('res-avoid');\
-  av.innerHTML = '';\
-  r.avoid.forEach(function (item) \{\
-    const d = document.createElement('div');\
-    d.className = 'avoid-item';\
-    d.innerHTML = '<span class="avoid-icon">' + item.icon + '</span><span class="avoid-text">' + item.text + '</span>';\
-    av.appendChild(d);\
-  \});\
-\
-  showScreen('result');\
-\}\
-\
-$('retry-btn').addEventListener('click', function () \{\
-  currentQ = 0; totalScore = 0;\
-  loadQuestion();\
-  showScreen('quiz');\
-\});\
-\
-init();\
-</script>\
-</body>\
-</html>}
+  .screen{position:absolute;inset:0;display:flex;flex-direction:column;transition:all .5s cubic-bezier(.4,0,.2,1);overflow:hidden}
+  .screen.hidden{opacity:0;pointer-events:none;transform:translateX(60px)}
+  .screen.prev{transform:translateX(-60px);opacity:0;pointer-events:none}
+
+  /* === COVER === */
+  #cover{background:linear-gradient(160deg,#eaf2ee 0%,#f7efed 50%,#f2ede9 100%);align-items:center;justify-content:center;padding:32px 28px}
+  .cover-deco{position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#c5d8cc55,transparent 70%)}
+  .cover-deco2{position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#e8d4d055,transparent 70%)}
+  .cover-tag{background:var(--blush);color:#fff;font-size:11px;letter-spacing:2px;padding:5px 14px;border-radius:30px;margin-bottom:20px;display:inline-block}
+  .cover-title{font-family:'Noto Serif SC',serif;font-size:26px;font-weight:700;line-height:1.45;color:var(--ink);text-align:center;margin-bottom:10px}
+  .cover-title span{color:var(--blush)}
+  .cover-sub{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-bottom:6px;line-height:1.8}
+  .cover-count{display:flex;align-items:center;gap:8px;background:#fff;border-radius:30px;padding:8px 18px;margin:18px 0 32px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--sage);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+  .count-text{font-size:12px;color:var(--ink-mid)}
+  .count-text strong{color:var(--sage);font-weight:700}
+  .btn-main{background:var(--ink);color:#fff;border:none;border-radius:var(--r);padding:18px 48px;font-size:16px;font-family:'Noto Sans SC',sans-serif;font-weight:500;cursor:pointer;letter-spacing:1px;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
+  .btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(61,53,48,.2)}
+  .btn-main:active{transform:scale(.97)}
+  .cover-note{font-size:11px;color:var(--ink-soft);margin-top:16px;text-align:center;opacity:.7}
+
+  /* === BLOCKED === */
+  #blocked{background:var(--cream);align-items:center;justify-content:center;padding:40px 28px}
+  .blocked-inner{width:100%}
+  .blocked-icon{font-size:48px;margin-bottom:20px;text-align:center}
+  .blocked-box{background:#fff;border-radius:var(--r);padding:28px 24px;border:1px solid var(--stone-light);text-align:center}
+  .blocked-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px}
+  .blocked-desc{font-size:13px;color:var(--ink-mid);line-height:1.8;margin-bottom:20px}
+  .code-row{display:flex;gap:8px;margin-bottom:8px}
+  .gate-code-input{flex:1;border:1.5px solid var(--stone-light);border-radius:12px;padding:14px 16px;font-size:15px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);background:var(--cream);outline:none;text-align:center;letter-spacing:2px;transition:border-color .2s}
+  .gate-code-input:focus{border-color:var(--sage)}
+  .gate-submit{background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:14px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;white-space:nowrap;transition:opacity .2s}
+  .gate-submit:hover{opacity:.85}
+  .gate-err{font-size:12px;color:var(--blush);min-height:20px;text-align:center}
+  .blocked-tip{font-size:11px;color:var(--ink-soft);margin-top:16px;line-height:1.7;text-align:center}
+
+  /* === QUIZ === */
+  #quiz{background:var(--cream)}
+  .progress-bar{background:rgba(250,248,245,.95);backdrop-filter:blur(10px);padding:16px 24px 12px;border-bottom:1px solid var(--stone-light);flex-shrink:0}
+  .progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .prog-label{font-size:11px;color:var(--ink-soft);letter-spacing:1px}
+  .prog-num{font-size:13px;font-weight:700;color:var(--blush)}
+  .prog-track{height:3px;background:var(--stone-light);border-radius:2px;overflow:hidden}
+  .prog-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--blush));border-radius:2px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+  .quiz-body{flex:1;overflow-y:auto;padding:28px 22px 80px;-webkit-overflow-scrolling:touch}
+  .q-num{font-size:11px;color:var(--sage);letter-spacing:2px;margin-bottom:12px;font-weight:500}
+  .q-text{font-family:'Noto Serif SC',serif;font-size:19px;font-weight:600;line-height:1.65;color:var(--ink);margin-bottom:28px;background:#fff;border-radius:var(--r);padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+  .options{display:flex;flex-direction:column;gap:var(--gap)}
+  .opt{background:#fff;border:1.5px solid var(--stone-light);border-radius:var(--r);padding:16px 20px;font-size:14px;line-height:1.6;color:var(--ink-mid);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;text-align:left;font-family:'Noto Sans SC',sans-serif;width:100%}
+  .opt-bg{position:absolute;inset:0;background:var(--sage-ultra);opacity:0;transition:opacity .2s}
+  .opt:hover .opt-bg{opacity:1}
+  .opt:hover{border-color:var(--sage);color:var(--ink);transform:translateX(4px)}
+  .opt.selected{border-color:var(--blush);background:var(--blush-ultra);color:var(--ink)}
+  .opt.selected .opt-check{opacity:1}
+  .opt-check{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--blush);opacity:0;transition:opacity .2s}
+  .opt-text{position:relative;z-index:1}
+
+  /* === LOADING === */
+  #loading{background:var(--cream);align-items:center;justify-content:center;padding:40px 28px;text-align:center}
+  .loading-emoji{font-size:52px;margin-bottom:24px;animation:float 3s ease-in-out infinite;display:block}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .loading-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.6}
+  .loading-sub{font-size:12px;color:var(--ink-soft);margin-bottom:36px;line-height:1.8}
+  .load-pct{font-size:32px;font-weight:700;color:var(--blush);margin-bottom:12px;font-family:'Noto Serif SC',serif}
+  .load-track{width:100%;max-width:280px;height:4px;background:var(--stone-light);border-radius:2px;overflow:hidden;margin:0 auto 12px}
+  .load-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--sage),var(--blush));border-radius:2px;transition:width .3s ease}
+  .load-tip{font-size:11px;color:var(--ink-soft);letter-spacing:.5px;margin-top:6px}
+
+  /* === RESULT === */
+  #result{background:var(--cream);overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .result-hero{background:linear-gradient(160deg,#eaf2ee,#f7efed);padding:52px 28px 36px;text-align:center}
+  .result-badge{display:inline-block;background:var(--blush);color:#fff;font-size:11px;padding:5px 16px;border-radius:30px;letter-spacing:2px;margin-bottom:16px}
+  .result-label{font-family:'Noto Serif SC',serif;font-size:38px;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.3}
+  .result-keywords{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+  .kw{background:#fff;border:1px solid var(--sage-light);color:var(--sage);font-size:12px;padding:5px 14px;border-radius:20px}
+  .result-score{font-size:12px;color:var(--ink-soft)}
+  .result-body{padding:20px 22px 20px}
+  .result-card{background:#fff;border-radius:var(--r);padding:22px;margin-bottom:14px;border:1px solid var(--stone-light)}
+  .rc-label{font-size:10px;color:var(--stone);letter-spacing:2px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+  .rc-label::before{content:'';display:inline-block;width:14px;height:2px;background:var(--blush);border-radius:1px}
+  .rc-text{font-size:14px;line-height:1.9;color:var(--ink-mid)}
+  .avoid-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--stone-light)}
+  .avoid-item:last-child{border-bottom:none;padding-bottom:0}
+  .avoid-item:first-child{padding-top:0}
+  .avoid-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+  .avoid-text{font-size:13px;line-height:1.75;color:var(--ink-mid)}
+  .save-hint{background:var(--ink);color:#fff;margin:0 22px 14px;border-radius:var(--r);padding:18px 20px;text-align:center;font-size:13px;line-height:1.6}
+  .save-hint strong{display:block;font-size:15px;margin-bottom:5px;letter-spacing:.5px}
+  .btn-retry{display:block;width:calc(100% - 44px);margin:0 22px 40px;background:#fff;border:1.5px solid var(--stone-light);border-radius:var(--r);padding:15px;text-align:center;font-size:14px;color:var(--ink-mid);cursor:pointer;font-family:'Noto Sans SC',sans-serif;transition:all .2s}
+  .btn-retry:hover{border-color:var(--blush);color:var(--blush)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- BLOCKED SCREEN -->
+<div class="screen hidden" id="blocked">
+  <div class="blocked-inner">
+    <div class="blocked-icon">⚠️</div>
+    <div class="blocked-box">
+      <div class="blocked-title">访问受限</div>
+      <div class="blocked-desc">
+        请通过官方渠道（小红书店铺）获取合法测试链接后再访问本页面。<br><br>
+        如已有测评码，请在下方输入：
+      </div>
+      <div class="code-row">
+        <input class="gate-code-input" id="inline-code" placeholder="输入测评码..." maxlength="20">
+        <button class="gate-submit" id="inline-submit">验证</button>
+      </div>
+      <div class="gate-err" id="inline-err"></div>
+      <div class="blocked-tip">
+        示例有效码：TEST123 / XHS2026<br>
+        或通过链接参数访问：<code style="font-size:10px;background:var(--stone-ultra);padding:2px 6px;border-radius:4px">/?code=TEST123</code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COVER SCREEN -->
+<div class="screen hidden" id="cover">
+  <div class="cover-deco"></div>
+  <div class="cover-deco2"></div>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%">
+    <div class="cover-tag">2026 精神状态大普查</div>
+    <div class="cover-title">测测你的<br><span>「抽象人格」</span>标签</div>
+    <div class="cover-sub">
+      5 道灵魂拷问 · 3 分钟 · AI 深度解析<br>
+      测准率 <strong style="color:var(--blush)">99%</strong>（概不负责）
+    </div>
+    <div class="cover-count">
+      <div class="dot"></div>
+      <div class="count-text">已有 <strong>12,508</strong> 人参与测评</div>
+    </div>
+    <button class="btn-main" id="start-btn">🔮 开启灵魂拷问</button>
+    <div class="cover-note">测评结果仅供娱乐 · 请理性看待你的抽象程度</div>
+  </div>
+</div>
+
+<!-- QUIZ SCREEN -->
+<div class="screen hidden" id="quiz">
+  <div class="progress-bar">
+    <div class="progress-meta">
+      <div class="prog-label">灵魂拷问进度</div>
+      <div class="prog-num" id="prog-num">1 / 5</div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:20%"></div></div>
+  </div>
+  <div class="quiz-body">
+    <div class="q-num" id="q-num">第 01 题</div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options" id="options"></div>
+  </div>
+</div>
+
+<!-- LOADING SCREEN -->
+<div class="screen hidden" id="loading">
+  <span class="loading-emoji">🧠</span>
+  <div class="loading-title">AI 正在根据你的<br>神经突触分布生成报告...</div>
+  <div class="loading-sub">正在分析：抽象指数 · 精神浓度 · 摆烂半径</div>
+  <div class="load-pct" id="load-pct">0%</div>
+  <div class="load-track"><div class="load-fill" id="load-fill"></div></div>
+  <div class="load-tip" id="load-tip">解码行为模式中...</div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div class="screen hidden" id="result">
+  <div class="result-hero">
+    <div class="result-badge">你的人格标签</div>
+    <div class="result-label" id="res-label">—</div>
+    <div class="result-keywords" id="res-keywords"></div>
+    <div class="result-score" id="res-score"></div>
+  </div>
+  <div class="result-body">
+    <div class="result-card">
+      <div class="rc-label">核心解析</div>
+      <div class="rc-text" id="res-desc"></div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">精神状态剖面</div>
+      <div class="rc-text" id="res-detail"></div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">避雷指南</div>
+      <div id="res-avoid"></div>
+    </div>
+  </div>
+  <div class="save-hint">
+    <strong>📸 长按保存结果图</strong>
+    截图分享给朋友，看看 ta 的抽象程度
+  </div>
+  <button class="btn-retry" id="retry-btn">↩ 再测一次</button>
+</div>
+
+</div>
+
+<script>
+const QUIZ = [
+  {
+    id: 1,
+    q: "周一早上闹钟响了 5 次你都没起，此时你脑子里在想？",
+    options: [
+      { text: "大不了辞职，明天就去流浪", score: 3 },
+      { text: "再躺 1 分钟，就 1 分钟", score: 2 },
+      { text: "计算迟到扣多少钱，并精准起床", score: 1 }
+    ]
+  },
+  {
+    id: 2,
+    q: "老板在群里发了一个红包，但没人说话，你会？",
+    options: [
+      { text: "火速领完并发送【谢谢老板】", score: 1 },
+      { text: "观察 5 分钟，看别人领不领", score: 2 },
+      { text: "领完装死，绝不回复", score: 3 }
+    ]
+  },
+  {
+    id: 3,
+    q: "深夜突然想吃宵夜，但又怕胖，此时你的心态是？",
+    options: [
+      { text: "算了，不吃会心情不好，心情不好会老得快", score: 3 },
+      { text: "看 10 个吃播视频，假装自己吃过了", score: 2 },
+      { text: "喝一杯白开水，暗示自己饱了", score: 1 }
+    ]
+  },
+  {
+    id: 4,
+    q: "遇到很久没见的熟人迎面走来，你第一反应？",
+    options: [
+      { text: "火速低头玩手机，祈祷对方看不见我", score: 3 },
+      { text: "大脑空白，僵硬地微笑点头", score: 2 },
+      { text: "热情打招呼：好久不见！改天约饭！", score: 1 }
+    ]
+  },
+  {
+    id: 5,
+    q: "如果你的生活被拍成电影，片名大概会叫？",
+    options: [
+      { text: "《绝不服输的打工人》", score: 1 },
+      { text: "《互联网废料回收站》", score: 2 },
+      { text: "《一个人的静音模式》", score: 3 }
+    ]
+  }
+];
+
+const RESULTS = {
+  low: {
+    label: "铁血自律人",
+    keywords: ["靠谱", "稳定", "赚大钱"],
+    desc: "你强大的自我约束力让 AI 都感到害怕，你是这个社会的最后防线。当别人在摆烂时，你已经完成了今天的第三个目标。",
+    detail: "极度理性的大脑皮层 · 情绪调节能力 SSS 级 · 对【再等一会儿】这个概念完全免疫。你的朋友圈里，你永远是那个最先回消息、最准时赴约、最会规划的那一个。",
+    avoid: [
+      { icon: "⚡", text: "和摆烂人组队做项目，你会原地爆炸" },
+      { icon: "🌀", text: "试图拯救每一个不自律的朋友" },
+      { icon: "⏰", text: "对自己要求过高导致精神内耗" }
+    ]
+  },
+  mid: {
+    label: "半自动精神体",
+    keywords: ["纠结", "真实", "可塑性强"],
+    desc: "在【燃起来了】和【算了吧】之间反复横跳，擅长有条件的摆烂。你不是没有理想，你只是还在等一个【合适的时机】。",
+    detail: "前一秒励志后一秒 emo · 行动力取决于心情 · 朋友眼里的【时好时坏型】。你的人生哲学是：能做就做，做不了就躺，躺累了再做。这其实是一种高级的动态平衡。",
+    avoid: [
+      { icon: "🎲", text: "参加需要持续自律的挑战，三天打鱼两天晒网" },
+      { icon: "💬", text: "和铁血自律人深度对话，容易被鄙视" },
+      { icon: "🌙", text: "深夜刷手机，第二天后悔到下午" }
+    ]
+  },
+  high: {
+    label: "顶级抽象玩家",
+    keywords: ["有趣", "自由", "已读不回"],
+    desc: "你的精神状态领先人类 50 年。你不是在发疯，你只是在做自己。宇宙的尽头是抽象，而你已经到了。",
+    detail: "思维跳跃如量子纠缠 · 情绪管理靠【不管了】 · 人间清醒的最高境界。你的世界里没有【应该】，只有【想不想】。朋友说你难以捉摸，但其实你只是活在自己的宇宙里。",
+    avoid: [
+      { icon: "📋", text: "参加任何有严格规章制度的集体活动" },
+      { icon: "🤝", text: "和极度在乎他人看法的人深交" },
+      { icon: "⏳", text: "做需要长期规划和按时交付的工作" }
+    ]
+  }
+};
+
+const LOAD_TIPS = [
+  "解码行为模式中...",
+  "量子计算抽象指数...",
+  "校准精神浓度传感器...",
+  "生成人格指纹图谱...",
+  "最终报告编译中..."
+];
+
+const VALID_CODES = ["TEST123", "XHS2026", "MORA001", "QUIZ888"];
+
+let currentQ = 0, totalScore = 0, validAccess = false;
+
+function $(id) { return document.getElementById(id); }
+
+function showScreen(id) {
+  ['blocked', 'cover', 'quiz', 'loading', 'result'].forEach(s => {
+    $(s).classList.toggle('hidden', s !== id);
+  });
+  if (id === 'result') $(id).scrollTop = 0;
+}
+
+function checkCode(code) {
+  const c = (code || '').trim().toUpperCase();
+  return VALID_CODES.includes(c) || c.length >= 6;
+}
+
+function getURLCode() {
+  try {
+    return new URLSearchParams(window.location.search).get('code');
+  } catch (e) { return null; }
+}
+
+function init() {
+  const urlCode = getURLCode();
+  if (urlCode && checkCode(urlCode)) {
+    validAccess = true;
+    showScreen('cover');
+  } else {
+    showScreen('blocked');
+  }
+}
+
+// Blocked screen
+$('inline-submit').addEventListener('click', function () {
+  const v = $('inline-code').value;
+  if (checkCode(v)) {
+    validAccess = true;
+    showScreen('cover');
+  } else {
+    $('inline-err').textContent = '测评码无效，请检查后重试 🙏';
+    $('inline-code').style.borderColor = 'var(--blush)';
+    setTimeout(() => {
+      $('inline-code').style.borderColor = '';
+      $('inline-err').textContent = '';
+    }, 2500);
+  }
+});
+$('inline-code').addEventListener('keydown', e => { if (e.key === 'Enter') $('inline-submit').click(); });
+
+// Cover
+$('start-btn').addEventListener('click', function () {
+  currentQ = 0; totalScore = 0;
+  loadQuestion();
+  showScreen('quiz');
+});
+
+function loadQuestion() {
+  const q = QUIZ[currentQ];
+  const n = currentQ + 1;
+  $('prog-num').textContent = n + ' / ' + QUIZ.length;
+  $('prog-fill').style.width = (n / QUIZ.length * 100) + '%';
+  $('q-num').textContent = '第 ' + String(n).padStart(2, '0') + ' 题';
+  $('q-text').textContent = q.q;
+
+  const opts = $('options');
+  opts.innerHTML = '';
+  q.options.forEach(function (o) {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = '<div class="opt-bg"></div><span class="opt-text">' + o.text + '</span><span class="opt-check">✓</span>';
+    btn.addEventListener('click', function () {
+      if (btn.classList.contains('selected')) return;
+      document.querySelectorAll('.opt').forEach(b => b.style.pointerEvents = 'none');
+      btn.classList.add('selected');
+      setTimeout(function () {
+        totalScore += o.score;
+        currentQ++;
+        if (currentQ < QUIZ.length) {
+          loadQuestion();
+        } else {
+          startLoading();
+        }
+      }, 300);
+    });
+    opts.appendChild(btn);
+  });
+}
+
+function startLoading() {
+  showScreen('loading');
+  let pct = 0, tipIdx = 0;
+  const fill = $('load-fill');
+  const pctEl = $('load-pct');
+  const tipEl = $('load-tip');
+
+  const iv = setInterval(function () {
+    pct += Math.random() * 7 + 2;
+    if (pct > 100) pct = 100;
+    fill.style.width = Math.floor(pct) + '%';
+    pctEl.textContent = Math.floor(pct) + '%';
+    const ti = Math.min(Math.floor(pct / 22), LOAD_TIPS.length - 1);
+    if (ti !== tipIdx) { tipIdx = ti; tipEl.textContent = LOAD_TIPS[ti]; }
+    if (pct >= 100) { clearInterval(iv); setTimeout(showResult, 500); }
+  }, 120);
+}
+
+function showResult() {
+  let r;
+  if (totalScore <= 8) r = RESULTS.low;
+  else if (totalScore <= 12) r = RESULTS.mid;
+  else r = RESULTS.high;
+
+  $('res-label').textContent = r.label;
+  $('res-keywords').innerHTML = r.keywords.map(k => '<span class="kw">' + k + '</span>').join('');
+  $('res-score').textContent = '本次得分：' + totalScore + ' 分 · 共 ' + QUIZ.length + ' 题';
+  $('res-desc').textContent = r.desc;
+  $('res-detail').textContent = r.detail;
+
+  const av = $('res-avoid');
+  av.innerHTML = '';
+  r.avoid.forEach(function (item) {
+    const d = document.createElement('div');
+    d.className = 'avoid-item';
+    d.innerHTML = '<span class="avoid-icon">' + item.icon + '</span><span class="avoid-text">' + item.text + '</span>';
+    av.appendChild(d);
+  });
+
+  showScreen('result');
+}
+
+$('retry-btn').addEventListener('click', function () {
+  currentQ = 0; totalScore = 0;
+  loadQuestion();
+  showScreen('quiz');
+});
+
+init();
+</script>
+</body>
+</html>
